@@ -1,14 +1,16 @@
 package ru.litlmayn.calculator.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
 @Getter
 @Setter
+@Builder
+@ToString
+@AllArgsConstructor
 @Schema(description = "Кредитное предложение")
 public class LoanOfferDto {
     @Schema(description = "id заявки")
@@ -28,8 +30,4 @@ public class LoanOfferDto {
     @Schema(description = "Ялвяется ли заемщик зарплатным клиентом")
     private Boolean isSalaryClient;
 
-    public LoanOfferDto(Boolean isInsuranceEnabled, Boolean isSalaryClient) {
-        this.isInsuranceEnabled = isInsuranceEnabled;
-        this.isSalaryClient = isSalaryClient;
-    }
 }

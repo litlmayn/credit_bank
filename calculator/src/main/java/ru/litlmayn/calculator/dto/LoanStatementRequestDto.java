@@ -1,9 +1,7 @@
 package ru.litlmayn.calculator.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 import ru.litlmayn.calculator.utils.MinimumDate;
 
@@ -16,50 +14,51 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
+@ToString
+@AllArgsConstructor
 @Schema(description = "Данные для расчета кредитного предложения")
 public class LoanStatementRequestDto {
     @NonNull
     @Min(value = 30000, message = "Минимальная сумма кредита 30 000.")
-    @Schema(description = "Сумма кредита")
+    @Schema(description = "Сумма кредита", example = "100000")
     private BigDecimal amount;
 
     @NonNull
     @Min(value = 6, message = "Минимальный срок на который выдается кредит - 6 месяцев.")
-    @Schema(description = "Срок кредита")
+    @Schema(description = "Срок кредита", example = "18")
     private Integer term;
 
     @NonNull
     @Size(min =2, max = 30, message = "Размер имени не соответствует ожидаемому")
-    @Schema(description = "Имя")
+    @Schema(description = "Имя", example = "Иван")
     private String firstName;
 
     @NonNull
     @Size(min =2, max = 30, message = "Размер фамилии не соответствует ожидаемому")
-    @Schema(description = "Фамилия")
+    @Schema(description = "Фамилия", example = "Иванов")
     private String lastName;
 
-    @NonNull
     @Size(min =2, max = 30, message = "Размер отчества не соответствует ожидаемому")
-    @Schema(description = "Отчество")
+    @Schema(description = "Отчество", example = "Иванович")
     private String middleName;
 
     @NonNull
     @Pattern(regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$", message = "Невалидный email")
-    @Schema(description = "Email")
+    @Schema(description = "Email", example = "ivanov_ivan@mail.ru")
     private String email;
 
     @NonNull
     @MinimumDate(message = "Вы должны быть старще 18 лет.")
-    @Schema(description = "Дата рождения")
+    @Schema(description = "Дата рождения", example = "2000-01-01")
     private LocalDate birthdate;
 
     @NonNull
     @Size(min = 4, max = 4, message = "Серия паспорта состоит из 4 цифр.")
-    @Schema(description = "Серия паспорта")
+    @Schema(description = "Серия паспорта", example = "1234")
     private String passportSeries;
 
     @NonNull
     @Size(min = 6, max = 6, message = "Номер паспорта состоит из 6 цифр.")
-    @Schema(description = "Номер паспорта")
+    @Schema(description = "Номер паспорта", example = "123456")
     private String passportNumber;
 }
