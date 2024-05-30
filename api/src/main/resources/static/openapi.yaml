@@ -1,0 +1,213 @@
+openapi: 3.0.1
+info:
+  title: credit bank
+  description: Приложения для кредитования
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Calculator
+    description: Калькулятор кредитных предложений
+
+paths:
+  /calculator/offers:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanStatementRequestDto'
+
+      responses:
+        '200':
+          description: Ok. Successful offer response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanOfferDto'
+        '400':
+          description: Error 400 Bad request
+        '500':
+          description: Error 500 internalServerError
+
+  /calculator/calc:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringDataDto'
+      responses:
+        '200':
+          description: Ok. Successful offer response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreditDto'
+        '400':
+          description: Error 400 Bad request
+        '500':
+          description: Error 500 internalServerError
+
+
+
+
+components:
+  schemas:
+    LoanOfferDto:
+      description: Кредитное предложение
+      type: object
+      properties:
+        statementId:
+          description: id заявки
+          type: string
+        requestedAmount:
+          description: Запрошенная сумма
+          type: number
+        totalAmount:
+          description: Итоговая сумма
+          type: number
+        term:
+          description: Срок кредита
+          type: integer
+        monthlyPayment:
+          description: Ежемесячный платеж
+          type: number
+        rate:
+          description: Процентная ставка
+          type: number
+        isInsuranceEnabled:
+          description: Включена ли страховка
+          type: boolean
+        isSalaryClient:
+          description: Ялвяется ли заемщик зарплатным клиентом
+          type: boolean
+
+    LoanStatementRequestDto:
+      description: Данные для расчета кредитного предложени
+      type: object
+      properties:
+        amount:
+          description: Сумма кредита
+          type: number
+        term:
+          description: Срок кредита
+          type: integer
+        firstName:
+          description: Имя
+          type: string
+        lastName:
+          description: Фамилия
+          type: string
+        middleName:
+          description: Отчество
+          type: string
+        email:
+          description: email
+          type: string
+        birthdate:
+          description: Дата рождения
+          type: number
+        passportSeries:
+          description: Серия паспорта
+          type: string
+        passportNumber:
+          description: Номер паспорта
+          type: string
+
+    ScoringDataDto:
+      description: Полные данные о заемщике
+      type: object
+      properties:
+        amount:
+          description: Сумма кредита
+          type: number
+        term:
+          description: Срок кредита
+          type: integer
+        firstName:
+          description: Имя
+          type: string
+        lastName:
+          description: Фамилия
+          type: string
+        middleName:
+          description: Отчество
+          type: string
+        gender:
+          description: Пол
+          enum:
+            - MAN
+            - WOMAN
+            - NON_BINARY
+        birthdate:
+          description: День рождения
+          type: number
+        passportSeries:
+          description: Серия паспорта
+          type: string
+        passportNumber:
+          description: Номер паспорта
+          type: string
+        passportIssueDate:
+          description: Дата выпуска паспорта
+          type: number
+        passportIssueBranch:
+          description: Отедл выпуска паспорта
+          type: string
+        maritalStatus:
+          description: Семейное положение
+          enum:
+            - SINGLE
+            - MARRIED
+            - DIVORCED
+        dependentAmount:
+          description: Количество иждевенцев
+          type: integer
+        employment:
+          description: Должность на работе
+          type: object
+        accountNumber:
+          description: Номер счета
+          type: string
+        isInsuranceEnabled:
+          description: Куплена ли страховка
+          type: boolean
+        isSalaryClient:
+          description: Является ли зарплатным клиентом
+          type: boolean
+
+    CreditDto:
+      description: Полностью расчитанное кредитное предложения
+      type: object
+      properties:
+        amount:
+          description: Запрощенная сумма
+          type: number
+        term:
+          description: Срок кредита
+          type: integer
+        monthlyPayment:
+          description: Сумма ежемесячного платежа
+          type: number
+        rate:
+          description: Итоговая ставка
+          type: number
+        psk:
+          description: Полная стоимость кредита
+          type: number
+        isInsuranceEnabled:
+          description: Куплена ли страховка
+          type: boolean
+        isSalaryClient:
+          description: Является ли зарплатным клиентом
+          type: boolean
+        paymentSchedule:
+          description: График ежемесячных платежей
+          type: array

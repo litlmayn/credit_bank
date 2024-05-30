@@ -5,7 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.litlmayn.calculator.dto.LoanStatementRequestDto;
+import ru.litlmayn.api.dto.LoanStatementRequestDto;
 import ru.litlmayn.calculator.services.CreditDataService;
 import ru.litlmayn.calculator.services.ScoringService;
 

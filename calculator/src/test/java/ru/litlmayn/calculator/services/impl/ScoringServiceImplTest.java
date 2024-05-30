@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.litlmayn.calculator.dto.EmploymentDto;
-import ru.litlmayn.calculator.dto.ScoringDataDto;
-import ru.litlmayn.calculator.dto.enums.EmploymentStatus;
-import ru.litlmayn.calculator.dto.enums.Gender;
-import ru.litlmayn.calculator.dto.enums.MaritalStatus;
-import ru.litlmayn.calculator.dto.enums.Position;
+import ru.litlmayn.api.dto.EmploymentDto;
+import ru.litlmayn.api.dto.ScoringDataDto;
+import ru.litlmayn.api.dto.enums.EmploymentStatus;
+import ru.litlmayn.api.dto.enums.Gender;
+import ru.litlmayn.api.dto.enums.MaritalStatus;
+import ru.litlmayn.api.dto.enums.Position;
 import ru.litlmayn.api.exceptions.RefusalCreditException;
 
 import java.math.BigDecimal;

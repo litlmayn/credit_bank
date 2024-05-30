@@ -4,10 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.litlmayn.calculator.dto.CreditDto;
-import ru.litlmayn.calculator.dto.PaymentScheduleElementDto;
+import ru.litlmayn.api.dto.CreditDto;
+import ru.litlmayn.api.dto.PaymentScheduleElementDto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
