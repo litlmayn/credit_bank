@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -6,9 +6,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Schema(description = "Расписание платежа")

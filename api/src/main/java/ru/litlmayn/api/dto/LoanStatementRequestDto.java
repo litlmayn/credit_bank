@@ -1,9 +1,9 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.stereotype.Component;
-import ru.litlmayn.calculator.utils.MinimumDate;
+import ru.litlmayn.api.utils.MinimumDate;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Past;
@@ -12,9 +12,7 @@ import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@ToString
+@Data
 @AllArgsConstructor
 @Schema(description = "Данные для расчета кредитного предложения")
 public class LoanStatementRequestDto {

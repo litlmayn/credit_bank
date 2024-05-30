@@ -1,12 +1,12 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 public class FinishRegistrationRequestDto {
     private Enum gender;
     private Enum maritalStatus;

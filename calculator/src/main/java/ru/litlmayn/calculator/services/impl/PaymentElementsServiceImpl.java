@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.litlmayn.calculator.dto.CreditDto;
-import ru.litlmayn.calculator.dto.PaymentScheduleElementDto;
+import ru.litlmayn.api.dto.CreditDto;
+import ru.litlmayn.api.dto.PaymentScheduleElementDto;
 import ru.litlmayn.calculator.services.PaymentElementsService;
 
 import java.math.BigDecimal;

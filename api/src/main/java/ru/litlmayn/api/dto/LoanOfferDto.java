@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -6,10 +6,8 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @Builder
-@ToString
 @AllArgsConstructor
 @Schema(description = "Кредитное предложение")
 public class LoanOfferDto {

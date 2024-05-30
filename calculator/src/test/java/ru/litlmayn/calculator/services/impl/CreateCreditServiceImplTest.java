@@ -13,16 +13,10 @@ import ru.litlmayn.calculator.dto.enums.EmploymentStatus;
 import ru.litlmayn.calculator.dto.enums.Gender;
 import ru.litlmayn.calculator.dto.enums.MaritalStatus;
 import ru.litlmayn.calculator.dto.enums.Position;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
-import ru.litlmayn.calculator.services.PaymentElementsService;
-import ru.litlmayn.calculator.services.impl.CreateCreditServiceImpl;
-import ru.litlmayn.calculator.services.impl.CreditDataServiceImpl;
-import ru.litlmayn.calculator.services.impl.PaymentElementsServiceImpl;
-import ru.litlmayn.calculator.services.impl.ScoringServiceImpl;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;

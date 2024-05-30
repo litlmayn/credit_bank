@@ -1,21 +1,18 @@
-package ru.litlmayn.calculator.controllers;
+package ru.litlmayn.calculator.controllers.impl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.litlmayn.calculator.dto.CreditDto;
-import ru.litlmayn.calculator.dto.LoanOfferDto;
-import ru.litlmayn.calculator.dto.LoanStatementRequestDto;
-import ru.litlmayn.calculator.dto.ScoringDataDto;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.controllers.CalculatorController;
+import ru.litlmayn.api.dto.CreditDto;
+import ru.litlmayn.api.dto.LoanOfferDto;
+import ru.litlmayn.api.dto.LoanStatementRequestDto;
+import ru.litlmayn.api.dto.ScoringDataDto;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.CreateCreditService;
 import ru.litlmayn.calculator.services.LoanOffersService;
-import ru.litlmayn.calculator.services.impl.CreateCreditServiceImpl;
-import ru.litlmayn.calculator.services.impl.LoanOffersServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -25,10 +22,10 @@ import java.util.List;
 @RequestMapping("/api/calculator")
 @AllArgsConstructor
 @Tag(name = "Calculator controller", description = "Расчитывает все данные по кредиту")
-public class CalculatorController {
+public class CalculatorControllerImpl implements CalculatorController {
 
-    private final LoanOffersServiceImpl loanOffersService;
-    private final CreateCreditServiceImpl createCreditService;
+    private final LoanOffersService loanOffersService;
+    private final CreateCreditService createCreditService;
 
     @PostMapping("/offers")
     @Operation(summary = "Создание четырех кредитных предложений")
@@ -54,13 +51,6 @@ public class CalculatorController {
             log.info("Метод контроллера вернул: " + e.fillInStackTrace());
             throw new RuntimeException(e);
         }
-    }
-
-    @ExceptionHandler(RefusalCreditException.class)
-    public ResponseEntity<String> handleException(RefusalCreditException exception) {
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(exception.getMessage());
     }
 
 }

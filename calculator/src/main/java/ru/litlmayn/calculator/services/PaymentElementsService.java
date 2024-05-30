@@ -1,7 +1,7 @@
 package ru.litlmayn.calculator.services;
 
-import ru.litlmayn.calculator.dto.CreditDto;
-import ru.litlmayn.calculator.dto.PaymentScheduleElementDto;
+import ru.litlmayn.api.dto.CreditDto;
+import ru.litlmayn.api.dto.PaymentScheduleElementDto;
 
 import java.util.List;
 

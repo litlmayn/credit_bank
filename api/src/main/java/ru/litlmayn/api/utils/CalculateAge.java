@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.utils;
+package ru.litlmayn.api.utils;
 
 import java.time.LocalDate;
 

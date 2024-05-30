@@ -1,6 +1,6 @@
-package ru.litlmayn.calculator.validators;
+package ru.litlmayn.api.validators;
 
-import ru.litlmayn.calculator.utils.MinimumDate;
+import ru.litlmayn.api.utils.MinimumDate;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

@@ -1,16 +1,16 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import ru.litlmayn.calculator.dto.enums.EmploymentStatus;
-import ru.litlmayn.calculator.dto.enums.Position;
+import ru.litlmayn.api.dto.enums.EmploymentStatus;
+import ru.litlmayn.api.dto.enums.Position;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @Schema(description = "Данные о должности на работе")
 public class EmploymentDto {

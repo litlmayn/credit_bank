@@ -1,10 +1,10 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class EmailMessage {
     private String address;
     private Enum theme;

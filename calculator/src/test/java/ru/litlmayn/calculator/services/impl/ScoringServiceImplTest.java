@@ -10,7 +10,7 @@ import ru.litlmayn.calculator.dto.enums.EmploymentStatus;
 import ru.litlmayn.calculator.dto.enums.Gender;
 import ru.litlmayn.calculator.dto.enums.MaritalStatus;
 import ru.litlmayn.calculator.dto.enums.Position;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

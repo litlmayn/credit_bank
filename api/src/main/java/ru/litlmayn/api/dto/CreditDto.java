@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.dto;
+package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -6,11 +6,9 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
-@ToString
 @Schema(description = "Полностью расчитанное кредитное предложения")
 public class CreditDto {
     @Schema(description = "Запрощенная сумма")

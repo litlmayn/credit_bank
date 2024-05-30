@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.dto.enums;
+package ru.litlmayn.api.dto.enums;
 
 import lombok.Getter;
 

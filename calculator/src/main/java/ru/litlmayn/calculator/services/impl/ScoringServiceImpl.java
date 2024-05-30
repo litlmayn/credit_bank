@@ -6,14 +6,14 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
-import ru.litlmayn.calculator.dto.ScoringDataDto;
-import ru.litlmayn.calculator.dto.enums.EmploymentStatus;
-import ru.litlmayn.calculator.dto.enums.Gender;
-import ru.litlmayn.calculator.dto.enums.MaritalStatus;
-import ru.litlmayn.calculator.dto.enums.Position;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.dto.ScoringDataDto;
+import ru.litlmayn.api.dto.enums.EmploymentStatus;
+import ru.litlmayn.api.dto.enums.Gender;
+import ru.litlmayn.api.dto.enums.MaritalStatus;
+import ru.litlmayn.api.dto.enums.Position;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.ScoringService;
-import ru.litlmayn.calculator.utils.CalculateAge;
+import ru.litlmayn.api.utils.CalculateAge;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -102,7 +102,7 @@ public class ScoringServiceImpl implements ScoringService {
                     "Метод scoringTotalAmount вернул"
                             + new RefusalCreditException("Вам отказано в кредите.").fillInStackTrace()
             );
-            throw new RefusalCreditException("Вам отказано в кредите. scoringTotalAmount");
+            throw new RefusalCreditException("Вам отказано в кредите.");
         }
         log.info("Метод 'scoringTotalAmount' класса 'ScoringService' закончил выполнения логики.");
     }
@@ -128,7 +128,7 @@ public class ScoringServiceImpl implements ScoringService {
         log.info("На вход метод получил класс 'ScoringDataDto'= " + scoringDataDto);
         int age = CalculateAge.calculateAge(scoringDataDto.getBirthdate());
         if (age < 20 || age > 65) {
-            throw new RefusalCreditException("Вам отказано в кредите. scoringAge");
+            throw new RefusalCreditException("Вам отказано в кредите.");
         }
         log.info("Метод 'scoringAge' класса 'ScoringService' закончил выполнения логики.");
     }
@@ -158,7 +158,7 @@ public class ScoringServiceImpl implements ScoringService {
                     "Метод scoringWorkExperience вернул"
                             + new RefusalCreditException("Вам отказано в кредите.").fillInStackTrace()
             );
-            throw new RefusalCreditException("Вам отказано в кредите. scoringWorkExperience");
+            throw new RefusalCreditException("Вам отказано в кредите.");
         };
         log.info("Метод 'scoringWorkExperience' класса 'ScoringService' закончил выполнения логики.");
     }
