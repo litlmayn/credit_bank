@@ -12,7 +12,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
-import ru.litlmayn.api.exceptions.RefusalCreditException;
+import ru.litlmayn.calculator.exceptions.RefusalCreditException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,16 +25,16 @@ import static org.mockito.Mockito.when;
 class CreateCreditServiceImplTest {
 
     @Mock
-    CreditDataServiceImpl creditDataServiceImpl;
+    CreditDataServiceImpl creditDataService;
     @Mock
     PaymentElementsServiceImpl paymentElementsService;
     @Mock
-    ScoringServiceImpl scoringServiceImpl;
+    ScoringServiceImpl scoringService;
     @InjectMocks
-    CreateCreditServiceImpl createCreditServiceImpl;
+    CreateCreditServiceImpl createCreditService;
 
     @Test
-    void createCreditDto() throws RefusalCreditException{
+    void createCreditDtoValidData() throws RefusalCreditException{
         ScoringDataDto scoringDataDto = new ScoringDataDto(
                 new BigDecimal("100000"),
                 18,
@@ -62,16 +62,16 @@ class CreateCreditServiceImplTest {
                 false
         );
 
-        when(creditDataServiceImpl.calculateFullMonthlyPayment(
+        when(creditDataService.calculateFullMonthlyPayment(
                 new BigDecimal("25.0"),
                 new BigDecimal("100000"),
                 18,
                 false))
                 .thenReturn(new BigDecimal("6719.18"));
-        when(scoringServiceImpl.totalScoring(
+        when(scoringService.totalScoring(
                 scoringDataDto))
                 .thenReturn(25d);
-        when(creditDataServiceImpl.calculateTotalAmount(
+        when(creditDataService.calculateTotalAmount(
                 new BigDecimal("6719.18"),
                 18))
                 .thenReturn(new BigDecimal("118311.57"));
@@ -79,7 +79,7 @@ class CreateCreditServiceImplTest {
                 .thenReturn(null);
 
 
-        CreditDto creditDto = createCreditServiceImpl.createCreditDto(scoringDataDto);
+        CreditDto creditDto = createCreditService.createCreditDto(scoringDataDto);
         assertEquals(creditDto.getAmount(), new BigDecimal("100000"));
         assertEquals(creditDto.getTerm(), 18);
         assertEquals(creditDto.getMonthlyPayment(), new BigDecimal("6719.18"));

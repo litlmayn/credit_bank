@@ -4,7 +4,7 @@
     <artifactId>calculator</artifactId>
     <version>0.0.1</version>
     <packaging>jar</packaging>
-    <name>untitled Maven Webapp</name>
+    <name>calculator</name>
     <url>http://maven.apache.org</url>
     <parent>
         <groupId>ru.litlmayn</groupId>

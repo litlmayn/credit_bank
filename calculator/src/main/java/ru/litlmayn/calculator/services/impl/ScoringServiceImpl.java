@@ -11,7 +11,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
-import ru.litlmayn.api.exceptions.RefusalCreditException;
+import ru.litlmayn.calculator.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.ScoringService;
 import ru.litlmayn.api.utils.CalculateAge;
 
@@ -25,11 +25,12 @@ import java.math.MathContext;
 public class ScoringServiceImpl implements ScoringService {
 
     @Value("${base.rate}")
-    private double rate;
+    private Double rate = 0d;
+    @Value("${scoring.message}")
+    private String scoringMessage;
 
-    public double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException {
-        log.info("Вызов метода 'totalScoring' сервиса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto': " + scoringDataDto);
+    public Double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException {
+        log.info("totalScoring() - start: ScoringDataDto = " + scoringDataDto);
         scoringInsAndSal(scoringDataDto.getIsInsuranceEnabled(), scoringDataDto.getIsSalaryClient());
         scoringAge(scoringDataDto);
         scoringPosition(scoringDataDto);
@@ -38,33 +39,33 @@ public class ScoringServiceImpl implements ScoringService {
         scoringTotalAmount(scoringDataDto);
         scoringWorkExperience(scoringDataDto);
         scoringEmploymentStatus(scoringDataDto);
-        log.info("Метод вернул поле 'rate' со значением: " + rate);
+        log.info("totalScoring() - end: rate = " + rate);
         return rate;
     }
 
-    public double scoringInsAndSal(Boolean isInsuranceEnabled, Boolean isSalaryClient) {
-        log.info("Вызван метод 'scoringInsAndSal' класса 'ScoringService'");
-        log.info("На вход метод поля isInsuranceEnabled которое равно "
-                + isInsuranceEnabled + "поле isSalaryClient равное " + isSalaryClient);
+    public Double scoringInsAndSal(Boolean isInsuranceEnabled, Boolean isSalaryClient) {
+        log.info("scoringInsAndSal() - start: isInsuranceEnabled = " + isInsuranceEnabled
+                + ", isSalaryClient = " + isSalaryClient);
         if (isInsuranceEnabled) {
             rate -= 3;
         }
         if (isSalaryClient){
             rate -= 1;
         }
-        log.info("Метод вернул поле 'rate' со значением: " + rate);
+        log.info("scoringInsAndSal() - end: rate = " + rate);
         return rate;
     }
 
     private void scoringEmploymentStatus(ScoringDataDto scoringDataDto) throws RefusalCreditException {
-        log.info("Вызван метод 'scoringEmploymentStatus' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto': " + scoringDataDto);
+        log.info("scoringEmploymentStatus() - start: ScoringDataDto = " + scoringDataDto);
         if(scoringDataDto.getEmployment().getEmploymentStatus() == EmploymentStatus.UNEMPLOYED) {
             log.info(
-                    "Метод scoringEmploymentStatus вернул"
-                            + new RefusalCreditException("Вам отказано в кредите.").fillInStackTrace()
+                    "scoringEmploymentStatus() - end: RefusalCreditException = "
+                            + new RefusalCreditException(
+                                    "Вам отказано в кредите, так как вы не имеете места работы."
+                    ).fillInStackTrace()
             );
-            throw new RefusalCreditException("Вам отказано в кредите.");
+            throw new RefusalCreditException("Вам отказано в кредите, так как вы не имеете места работы.");
         } 
         switch (scoringDataDto.getEmployment().getEmploymentStatus()) {
             case EmploymentStatus.BUSINESS_OWNER:
@@ -74,13 +75,12 @@ public class ScoringServiceImpl implements ScoringService {
                 rate -= EmploymentStatus.SELF_EMPLOYED.getChangeRate();
                 break;
         }
-        log.info("Метод 'scoringEmploymentStatus' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringEmploymentStatus() - end: void");
     }
 
 
     private void scoringPosition(ScoringDataDto scoringDataDto) {
-        log.info("Вызван метод 'scoringPosition' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto': " + scoringDataDto);
+        log.info("scoringPosition() - start: ScoringDataDto = " + scoringDataDto);
         switch (scoringDataDto.getEmployment().getPosition()) {
             case Position.TOP_MANAGER:
                 rate -= Position.TOP_MANAGER.getChangeRate();
@@ -89,28 +89,28 @@ public class ScoringServiceImpl implements ScoringService {
                 rate -= Position.MANAGER.getChangeRate();
                 break;
         }
-        log.info("Метод 'scoringPosition' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringPosition() - end: void");
     }
 
     private void scoringTotalAmount(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка итоговой суммы займа в соотношении к зарплате заемщика. сумма займа меньше 25 зарплат
-        log.info("Вызван метод 'scoringTotalAmount' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto': " + scoringDataDto);
+        log.info("scoringTotalAmount() - start: ScoringDataDto = " + scoringDataDto);
         if (scoringDataDto.getAmount().divide(scoringDataDto.getEmployment().getSalary(), MathContext.DECIMAL32)
                 .compareTo(BigDecimal.valueOf(25)) > 0) {
             log.info(
-                    "Метод scoringTotalAmount вернул"
-                            + new RefusalCreditException("Вам отказано в кредите.").fillInStackTrace()
+                    "scoringTotalAmount() - end: RefusalCreditException = "
+                            + new RefusalCreditException(
+                                    "Вам отказано в кредите. Сумма кредита не должна превышать 25 зарплат.")
+                            .fillInStackTrace()
             );
-            throw new RefusalCreditException("Вам отказано в кредите.");
+            throw new RefusalCreditException("Вам отказано в кредите. Сумма кредита не должна превышать 25 зарплат.");
         }
-        log.info("Метод 'scoringTotalAmount' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringTotalAmount() - end: void");
     }
 
     private void scoringMaritalStatus(ScoringDataDto scoringDataDto) {
         // проверка семейного положения
-        log.info("Вызван метод 'scoringMaritalStatus' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto': " + scoringDataDto);
+        log.info("scoringMaritalStatus() - start: ScoringDataDto = " + scoringDataDto);
         switch (scoringDataDto.getMaritalStatus()){
             case MaritalStatus.MARRIED:
                 rate -= MaritalStatus.MARRIED.getChangeRate();
@@ -119,24 +119,28 @@ public class ScoringServiceImpl implements ScoringService {
                 rate += MaritalStatus.DIVORCED.getChangeRate();
                 break;
         };
-        log.info("Метод 'scoringMaritalStatus' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringMaritalStatus() - end: void");
     }
 
     private void scoringAge(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка возраста
-        log.info("Вызван метод 'scoringAge' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto'= " + scoringDataDto);
+        log.info("scoringAge() - start: ScoringDataDto = " + scoringDataDto);
         int age = CalculateAge.calculateAge(scoringDataDto.getBirthdate());
         if (age < 20 || age > 65) {
-            throw new RefusalCreditException("Вам отказано в кредите.");
+            log.info("scoringAge() - end: RefusalCreditException = "
+                + new RefusalCreditException(
+                        "Вам отказано в кредите. Для одобрения кредита нуеобходимо достичь 20 летнего возраста."
+            ).fillInStackTrace());
+            throw new RefusalCreditException(
+                    "Вам отказано в кредите. Для одобрения кредита нуеобходимо достичь 20 летнего возраста."
+            );
         }
-        log.info("Метод 'scoringAge' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringAge() - end: void");
     }
 
     private void scoringGender(ScoringDataDto scoringDataDto) {
         // проверка пола
-        log.info("Вызван метод 'scoringGender' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto'=" + scoringDataDto);
+        log.info("scoringGender() - start: ScoringDataDto = " + scoringDataDto);
         int age = CalculateAge.calculateAge(scoringDataDto.getBirthdate());
         if (scoringDataDto.getGender().equals(Gender.WOMAN) && age > 32 && age < 60) {
             rate -= 3;
@@ -145,21 +149,29 @@ public class ScoringServiceImpl implements ScoringService {
         } else if (scoringDataDto.getGender().equals(Gender.NON_BINARY)) {
             rate += 7;
         }
-        log.info("Метод 'scoringGender' класса 'ScoringService' закончил выполнения логики.");
+        log.info("scoringGender() - end: void");
     }
 
     private void scoringWorkExperience(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка стажа работы
-        log.info("Вызван метод 'scoringWorkExperience' класса 'ScoringService'");
-        log.info("На вход метод получил класс 'ScoringDataDto'=" + scoringDataDto);
-        if (scoringDataDto.getEmployment().getWorkExperienceTotal() < 18 ||
-                scoringDataDto.getEmployment().getWorkExperienceCurrent() < 3) {
-            log.info(
-                    "Метод scoringWorkExperience вернул"
-                            + new RefusalCreditException("Вам отказано в кредите.").fillInStackTrace()
+        log.info("scoringWorkExperience() - start: ScoringDataDto = " + scoringDataDto);
+        if (scoringDataDto.getEmployment().getWorkExperienceTotal() < 18) {
+            log.info("scoringWorkExperience() - end: RefusalCreditException = "
+                            + new RefusalCreditException(
+                                    "Вам отказано в кредите. Ваш общий стаж работы должен привышать 18 месяцес."
+            ).fillInStackTrace());
+            throw new RefusalCreditException(
+                    "Вам отказано в кредите. Ваш общий стаж работы должен привышать 18 месяцес."
             );
-            throw new RefusalCreditException("Вам отказано в кредите.");
-        };
-        log.info("Метод 'scoringWorkExperience' класса 'ScoringService' закончил выполнения логики.");
+        } else if (scoringDataDto.getEmployment().getWorkExperienceCurrent() < 3) {
+            log.info("scoringWorkExperience() - end: RefusalCreditException = "
+                    + new RefusalCreditException(
+                    "Вам отказано в кредите. Ваш общий стаж работы на данном месте работы должен привышать 3 месяцеса."
+            ).fillInStackTrace());
+            throw new RefusalCreditException(
+                    "Вам отказано в кредите. Ваш общий стаж работы на данном месте работы должен привышать 3 месяцеса."
+            );
+        }
+        log.info("scoringWorkExperience() - end: void");
     }
 }

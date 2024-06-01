@@ -63,7 +63,7 @@ public class ScoringDataDto {
     @Schema(description = "Дата выпуска паспорта", example = "2020-02-22")
     private LocalDate passportIssueDate;
 
-    @Schema(description = "Отедл выпуска паспорта", example = "Московский район")
+    @Schema(description = "Отдел выпуска паспорта", example = "Московский район")
     private String passportIssueBranch;
 
     @Schema(description = "Семейное положение", example = "MARRIED")

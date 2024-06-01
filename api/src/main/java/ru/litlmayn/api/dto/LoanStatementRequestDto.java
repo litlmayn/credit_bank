@@ -14,6 +14,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Schema(description = "Данные для расчета кредитного предложения")
 public class LoanStatementRequestDto {
     @NonNull
@@ -27,16 +28,16 @@ public class LoanStatementRequestDto {
     private Integer term;
 
     @NonNull
-    @Size(min =2, max = 30, message = "Размер имени не соответствует ожидаемому")
+    @Size(min = 2, max = 30, message = "Размер имени не соответствует ожидаемому")
     @Schema(description = "Имя", example = "Иван")
     private String firstName;
 
     @NonNull
-    @Size(min =2, max = 30, message = "Размер фамилии не соответствует ожидаемому")
+    @Size(min = 2, max = 30, message = "Размер фамилии не соответствует ожидаемому")
     @Schema(description = "Фамилия", example = "Иванов")
     private String lastName;
 
-    @Size(min =2, max = 30, message = "Размер отчества не соответствует ожидаемому")
+    @Size(min = 2, max = 30, message = "Размер отчества не соответствует ожидаемому")
     @Schema(description = "Отчество", example = "Иванович")
     private String middleName;
 

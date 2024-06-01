@@ -17,7 +17,7 @@ public class PaymentScheduleElementDto {
     private LocalDate date;
     @Schema(description = "Всего к оплате")
     private BigDecimal totalPayment;
-    @Schema(description = "Выплата процентов")
+    @Schema(description = "Выплата проценто")
     private BigDecimal interestPayment;
     @Schema(description = "Выплата долга")
     private BigDecimal debtPayment;

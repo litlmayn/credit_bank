@@ -1,9 +1,9 @@
 package ru.litlmayn.calculator.services;
 
 import ru.litlmayn.api.dto.ScoringDataDto;
-import ru.litlmayn.api.exceptions.RefusalCreditException;
+import ru.litlmayn.calculator.exceptions.RefusalCreditException;
 
 public interface ScoringService {
-    double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException;
-    double scoringInsAndSal(Boolean isInsuranceEnabled, Boolean isSalaryClient);
+    Double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException;
+    Double scoringInsAndSal(Boolean isInsuranceEnabled, Boolean isSalaryClient);
 }

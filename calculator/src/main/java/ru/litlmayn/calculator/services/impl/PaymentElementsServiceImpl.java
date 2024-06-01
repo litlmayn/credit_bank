@@ -23,8 +23,7 @@ public class PaymentElementsServiceImpl implements PaymentElementsService {
 
     public List<PaymentScheduleElementDto> calculatePaymentScheduleElements(CreditDto creditDto) {
         // создание графика платежей
-        log.info("Вызывается метод 'calculatePaymentScheduleElements' класса 'PaymentElementsService'");
-        log.info("Входные параметры метода 'calculatePaymentScheduleElements': " + creditDto);
+        log.info("calculatePaymentScheduleElements() - start: CreditDto = " + creditDto);
         LocalDate datePay = LocalDate.now();
         List<PaymentScheduleElementDto> list = new ArrayList<>();
         BigDecimal remainderCredit = creditDto.getPsk();
@@ -47,16 +46,15 @@ public class PaymentElementsServiceImpl implements PaymentElementsService {
                     )
             );
         }
-        log.info("Метод возвращает список 'PaymentScheduleElementDto' " + list.toString());
+        log.info("calculatePaymentScheduleElements() - end: PaymentScheduleElementDto = " + list.toString());
         return list;
     }
 
     private LocalDate counterDatePay(LocalDate datePay) {
         // счетчик дня платежа
-        log.info("Вызывается метод 'counterDatePay' класса 'PaymentElementsService'");
-        log.info("Входные параметры отсутвуют");
+        log.info("counterDatePay() - start: datePay = " + datePay);
         datePay = datePay.plusMonths(1);
-        log.info("Метод возвращает дату следуюшего платежа: " + datePay);
+        log.info("countDatePau() - end: datePay = " + datePay);
         return datePay;
     }
 }

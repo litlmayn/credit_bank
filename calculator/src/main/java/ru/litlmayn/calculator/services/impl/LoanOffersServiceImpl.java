@@ -27,17 +27,14 @@ public class LoanOffersServiceImpl implements LoanOffersService {
 
     public List<LoanOfferDto> createListOffers(LoanStatementRequestDto loanStatementRequestDto) {
         // метод для создания 4 первоначальных кредитных прелложений
-        log.info("Вызывается метод 'createListOffers' класса 'LoanOffersService'");
-        log.info(
-                "Входные параметры метода 'createListOffers' класс loanStatementRequestDto=" + loanStatementRequestDto
-        );
+        log.info("createListOffers() - start: loanStatementRequestDto = " + loanStatementRequestDto);
         List<LoanOfferDto> list = List.of(
                 createOffer(loanStatementRequestDto, false, false),
                 createOffer(loanStatementRequestDto, false, true),
                 createOffer(loanStatementRequestDto, true, false),
                 createOffer(loanStatementRequestDto, true, true)
         );
-        log.info("Метод возврашает 4 кредитных предложения: " + list.toString());
+        log.info("createListOffers() - end: List<LoanOfferDto> = " + list.toString());
         return list;
     }
 
@@ -47,9 +44,8 @@ public class LoanOffersServiceImpl implements LoanOffersService {
             Boolean isSalaryClient
     ) {
         // метод для создания первоначального кредитного прелложения
-        log.info("Вызывается метод 'createOffer' класса 'LoanOffersService'");
-        log.info("Входные параметры метода 'createOffer' класс loanStatementRequestDto=" + loanStatementRequestDto
-        + "isInsuranceEnabled=" + isInsuranceEnabled + "isSalaryClient=" + isSalaryClient);
+        log.info("createOffer() - start: loanStatementRequestDto = " + loanStatementRequestDto
+        + "isInsuranceEnabled = " + isInsuranceEnabled + "isSalaryClient = " + isSalaryClient);
         BigDecimal rate = BigDecimal.valueOf(scoring.scoringInsAndSal(
                         isInsuranceEnabled, isSalaryClient));
         BigDecimal monthlyPayment = creditDataService
@@ -69,7 +65,7 @@ public class LoanOffersServiceImpl implements LoanOffersService {
                 .isInsuranceEnabled(isInsuranceEnabled)
                 .isSalaryClient(isSalaryClient)
                 .build();
-        log.info("Метод возврашает кредитное предложение: " + loanOfferDto);
+        log.info("createOffer() - end: LoanOfferDto = " + loanOfferDto);
         return loanOfferDto;
     }
 }

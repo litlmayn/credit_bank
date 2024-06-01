@@ -183,6 +183,29 @@ components:
           description: Является ли зарплатным клиентом
           type: boolean
 
+    PaymentScheduleElementDto:
+      description: Расписание платежа
+      type: object
+      properties:
+        number:
+          description: Номер платежа
+          type: integer
+        date:
+          description: Дата платежа
+          type: number
+        totalPayment:
+          description: Всего к оплате
+          type: number
+        interestPayment:
+          description: Выплата проценто
+          type: number
+        debtPayment:
+          description: Выплата долга
+          type: number
+        remainingDebt:
+          description: Оставшийся долг
+          type: number
+
     CreditDto:
       description: Полностью расчитанное кредитное предложения
       type: object
@@ -210,4 +233,6 @@ components:
           type: boolean
         paymentSchedule:
           description: График ежемесячных платежей
-          type: array
+          type: object
+          items:
+            $ref: '#/components/schemas/PaymentScheduleElementDto'
