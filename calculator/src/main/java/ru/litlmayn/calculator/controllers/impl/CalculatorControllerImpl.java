@@ -28,7 +28,7 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     private final CreateCreditService createCreditService;
 
     @PostMapping("/offers")
-    @Operation(summary = "Создание четырех кредитных предложений")
+    @Operation(summary = "Создание кредитных предложений")
     public List<LoanOfferDto> offers(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
         log.info("offers() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
         List<LoanOfferDto> returnData = loanOffersService.createListOffers(loanStatementRequestDto);

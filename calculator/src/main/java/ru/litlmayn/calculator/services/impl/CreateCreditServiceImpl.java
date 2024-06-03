@@ -45,7 +45,5 @@ public class CreateCreditServiceImpl implements CreateCreditService {
         creditDto.setPaymentSchedule(paymentElementsService.calculatePaymentScheduleElements(creditDto));
         log.info("createCreditDto() - end: CreditDto = " + creditDto);
         return creditDto;
-
     }
-
 }
