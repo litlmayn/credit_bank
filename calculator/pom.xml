@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>calculator</artifactId>
+    <version>0.0.1</version>
+    <packaging>jar</packaging>
+    <name>calculator</name>
+    <url>http://maven.apache.org</url>
+    <parent>
+        <groupId>ru.litlmayn</groupId>
+        <artifactId>credit_bank</artifactId>
+        <version>0.0.1</version>
+    </parent>
+    <dependencies>
+        <dependency>
+            <groupId>ru.litlmayn</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>calculator</finalName>
+    </build>
+</project>
