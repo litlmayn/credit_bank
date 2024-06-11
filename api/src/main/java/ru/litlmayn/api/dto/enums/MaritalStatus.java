@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum MaritalStatus {
-    SINGLE(0), MARRIED(3), DIVORCED(1);
+    SINGLE(0), MARRIED(3), DIVORCED(1), WIDOW_WIDOWER(1);
 
     private final int changeRate;
 

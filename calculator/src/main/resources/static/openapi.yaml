@@ -1,16 +1,16 @@
 openapi: 3.0.1
 info:
-  title: credit bank
-  description: Приложения для кредитования
+  title: calculate
+  description: Приложения для рассчета кредного предложения
   version: 0.0.1
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/api/calculator/
 tags:
   - name: Calculator
     description: Калькулятор кредитных предложений
 
 paths:
-  /calculator/offers:
+  /offers:
     post:
       requestBody:
         required: true
@@ -33,7 +33,7 @@ paths:
         '500':
           description: Error 500 internalServerError
 
-  /calculator/calc:
+  /calc:
     post:
       requestBody:
         required: true
@@ -96,30 +96,39 @@ components:
         amount:
           description: Сумма кредита
           type: number
+          default: 100000
         term:
           description: Срок кредита
           type: integer
+          default: 18
         firstName:
           description: Имя
           type: string
+          default: Иван
         lastName:
           description: Фамилия
           type: string
+          default: Иванов
         middleName:
           description: Отчество
           type: string
+          default: Ивнович
         email:
           description: email
           type: string
+          default: ivanov@mail.ru
         birthdate:
           description: Дата рождения
           type: number
+          default: 2000-01-01
         passportSeries:
           description: Серия паспорта
           type: string
+          default: 1234
         passportNumber:
           description: Номер паспорта
           type: string
+          default: 123456
 
     ScoringDataDto:
       description: Полные данные о заемщике

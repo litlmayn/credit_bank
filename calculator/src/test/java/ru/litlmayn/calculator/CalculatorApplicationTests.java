@@ -10,5 +10,4 @@ class CalculatorApplicationTests {
     void contextLoads() {
 
     }
-
 }

@@ -17,22 +17,18 @@ import java.time.LocalDate;
 @Schema(description = "Полные данные о заемщике")
 public class ScoringDataDto {
 
-    @NonNull
     @Min(value = 30000, message = "Минимальная сумма кредита 30 000.")
     @Schema(description = "Сумма кредита", example = "100000")
     private BigDecimal amount;
 
-    @NonNull
     @Min(value = 6, message = "Минимальный срок на который выдается кредит - 6 месяцев.")
     @Schema(description = "Срок кредита", example = "18")
     private Integer term;
 
-    @NonNull
     @Size(min =2, max = 30, message = "Размер имени не соответствует ожидаемому")
     @Schema(description = "Имя", example = "Иван")
     private String firstName;
 
-    @NonNull
     @Size(min =2, max = 30, message = "Размер фамилии не соответствует ожидаемому")
     @Schema(description = "Фамиля", example = "Иванов")
     private String lastName;
@@ -44,17 +40,14 @@ public class ScoringDataDto {
     @Schema(description = "Пол", example = "MAN")
     private Gender gender;
 
-    @NonNull
     @MinimumDate(message = "Вы должны быть старще 18 лет.")
     @Schema(description = "День рождения", example = "2000-01-01")
     private LocalDate birthdate;
 
-    @NonNull
     @Size(min = 4, max = 4, message = "Серия паспорта состоит из 4 цифр.")
     @Schema(description = "Серия паспорта", example = "1234")
     private String passportSeries;
 
-    @NonNull
     @Size(min = 6, max = 6, message = "Номер паспорта состоит из 6 цифр.")
     @Schema(description = "Номер паспорта", example = "123456")
     private String passportNumber;

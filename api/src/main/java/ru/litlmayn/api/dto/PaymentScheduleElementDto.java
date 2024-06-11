@@ -9,6 +9,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Schema(description = "Расписание платежа")
 public class PaymentScheduleElementDto {
     @Schema(description = "Номер платежа")

@@ -1,0 +1,67 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-statement
+      author: Vadim Kramarenko
+      changes:
+        - createTable:
+            tableName: statement
+            columns:
+              - column:
+                  name: statement_id
+                  type: uuid
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+
+              - column:
+                  name: client_id
+                  type: uuid
+                  constraints:
+                    nullable: false
+                    foreignKeyName: client_id
+                    references: client(client_id)
+
+              - column:
+                  name: credit_id
+                  type: uuid
+                  constraints:
+                    nullable: true
+                    foreignKeyName: credit_id
+                    references: credit(credit_id)
+
+              - column:
+                  name: status
+                  type: varchar
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: creation_date
+                  type: timestamp
+                  constraints:
+                    nullable: false
+
+              - column:
+                 name: applied_offer
+                 type: jsonb
+                 constraints:
+                   nullable: true
+
+              - column:
+                  name: sign_date
+                  type: timestamp
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: ses_code
+                  type: varchar
+                  constraints:
+                    nullable: true
+
+              - column:
+                  name: status_history
+                  type: jsonb
+                  constraints:
+                    nullable: true

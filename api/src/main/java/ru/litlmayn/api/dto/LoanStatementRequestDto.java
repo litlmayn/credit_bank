@@ -15,6 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Schema(description = "Данные для расчета кредитного предложения")
 public class LoanStatementRequestDto {
     @NonNull

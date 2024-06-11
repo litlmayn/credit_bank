@@ -19,7 +19,7 @@ import java.util.UUID;
 @Slf4j
 @Service
 @AllArgsConstructor
-@PropertySource("classpath:calculator.properties")
+@PropertySource("classpath:application.properties")
 public class LoanOffersServiceImpl implements LoanOffersService {
 
     private final CreditDataService creditDataService;

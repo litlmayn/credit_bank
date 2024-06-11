@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-employment
+      author: Vadim Kramarenko
+      changes:
+        - createTable:
+            tableName: employment
+            columns:
+              - column:
+                  name: employment_uuid
+                  type: uuid
+                  autoIncrement: false
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    unique: true
+              - column:
+                  name: status
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: employer_inn
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: salary
+                  type: decimal
+                  constraints:
+                    nullable: false
+              - column:
+                  name: position
+                  type: varchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: work_experience_total
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: work_experience_current
+                  type: int
+                  constraints:
+                    nullable: false
