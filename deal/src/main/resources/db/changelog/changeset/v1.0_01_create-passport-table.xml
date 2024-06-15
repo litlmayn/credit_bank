@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet id="create-passport" author="Vadim Kramarenko">
+        <createTable tableName="passport">
+            <column name="passport_uuid" type="uuid" autoIncrement="false">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="series" type="varchar(4)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="number" type="varchar(6)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="issue_branch" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="issue_date" type="date">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

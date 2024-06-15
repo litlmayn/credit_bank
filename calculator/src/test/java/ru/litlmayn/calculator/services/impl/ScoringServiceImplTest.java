@@ -107,7 +107,7 @@ class ScoringServiceImplTest {
                 MaritalStatus.MARRIED,
                 2,
                 new EmploymentDto(
-                        EmploymentStatus.WORKER,
+                        EmploymentStatus.EMPLOYED,
                         "7743013902",
                         new BigDecimal("2000"),
                         Position.WORKER,
@@ -142,7 +142,7 @@ class ScoringServiceImplTest {
                 MaritalStatus.MARRIED,
                 2,
                 new EmploymentDto(
-                        EmploymentStatus.WORKER,
+                        EmploymentStatus.EMPLOYED,
                         "7743013902",
                         new BigDecimal("20000"),
                         Position.WORKER,
@@ -177,7 +177,7 @@ class ScoringServiceImplTest {
                 MaritalStatus.MARRIED,
                 2,
                 new EmploymentDto(
-                        EmploymentStatus.WORKER,
+                        EmploymentStatus.EMPLOYED,
                         "7743013902",
                         new BigDecimal("20000"),
                         Position.WORKER,
@@ -212,7 +212,7 @@ class ScoringServiceImplTest {
                 MaritalStatus.MARRIED,
                 2,
                 new EmploymentDto(
-                        EmploymentStatus.WORKER,
+                        EmploymentStatus.EMPLOYED,
                         "7743013902",
                         new BigDecimal("20000"),
                         Position.WORKER,

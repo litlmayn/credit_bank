@@ -2,6 +2,7 @@ package ru.litlmayn.models;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.TypeDef;
@@ -15,12 +16,14 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Entity
 @TypeDef(name = "jsonb", typeClass = JsonBinaryType.class)
 @Table(name = "employment")
 public class Employment {
     @Id
     @Column(name = "employment_uuid")
+    @GeneratedValue
     private UUID employmentId;
 
     @Column(name = "status")

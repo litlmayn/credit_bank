@@ -32,7 +32,7 @@ public class Statement {
     @JoinColumn(name = "client_id", referencedColumnName = "client_id")
     private Client clientId;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+    @OneToOne
     @JoinColumn(name = "credit_id")
     private Credit credit;
 

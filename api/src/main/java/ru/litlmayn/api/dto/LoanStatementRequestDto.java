@@ -1,12 +1,14 @@
 package ru.litlmayn.api.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import ru.litlmayn.api.utils.MinimumDate;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;

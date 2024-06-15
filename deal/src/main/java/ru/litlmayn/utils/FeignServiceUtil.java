@@ -1,6 +1,7 @@
 package ru.litlmayn.utils;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.litlmayn.api.dto.CreditDto;
 import ru.litlmayn.api.dto.LoanOfferDto;
@@ -9,7 +10,8 @@ import ru.litlmayn.api.dto.ScoringDataDto;
 
 import java.util.List;
 
-@FeignClient(value = "feignService", url = "http://localhost:8080/api/calculator")
+@PropertySource("classpath:application.properties")
+@FeignClient(value = "${feignClient.value}", url = "${feignClient.url}")
 public interface FeignServiceUtil {
 
     @PostMapping("/offers")

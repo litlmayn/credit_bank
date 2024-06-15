@@ -38,8 +38,8 @@ public class CalculateStatementIdImpl implements CalculateStatementId {
         CreditDto creditDto = feignServiceUtil.createCreditDto(scoringDataDto);
         Credit credit = CreditDtoToCreditMapper.MAPPER.toCreditResponse(creditDto);
         statement.setCredit(credit);
-        statementRepository.save(statement);
         creditRepository.save(credit);
+        statementRepository.save(statement);
         log.info("calculateCredit() - end: void");
     }
 
@@ -51,6 +51,11 @@ public class CalculateStatementIdImpl implements CalculateStatementId {
         Client client = clientRepository.findStatementByClientId(statement.getClientId().getClientId()).orElseThrow();
         ScoringDataDto scoringDataDto = ToScoringDataMapper.MAPPER.toScoringData(
                 client, finishRegistrationRequestDto, statement);
+        System.out.println(client);
+        System.out.println(finishRegistrationRequestDto);
+        client = FinishRegistrationToClientMapper.MAPPER.toClient(client, finishRegistrationRequestDto);
+        clientRepository.save(client);
+        System.out.println(client);
         log.info("createScoringDataDto() - end: ScoringDataDto = " + scoringDataDto);
         return scoringDataDto;
     }

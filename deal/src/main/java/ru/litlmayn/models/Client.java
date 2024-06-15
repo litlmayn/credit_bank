@@ -46,7 +46,7 @@ public class Client {
     private MaritalStatus maritalStatus;
 
     @Column(name = "dependent_amount")
-    private Integer dependedAmount;
+    private Integer dependentAmount;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "passport_id")
