@@ -11,7 +11,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.ScoringService;
 import ru.litlmayn.api.utils.CalculateAge;
 
@@ -21,13 +21,11 @@ import java.math.MathContext;
 @Slf4j
 @Service
 @Scope(value = "prototype", proxyMode= ScopedProxyMode.TARGET_CLASS)
-@PropertySource("classpath:calculator.properties")
+@PropertySource("classpath:application.properties")
 public class ScoringServiceImpl implements ScoringService {
 
     @Value("${base.rate}")
     private Double rate = 0d;
-    @Value("${scoring.message}")
-    private String scoringMessage;
 
     public Double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         log.info("totalScoring() - start: ScoringDataDto = " + scoringDataDto);
@@ -85,8 +83,8 @@ public class ScoringServiceImpl implements ScoringService {
             case Position.TOP_MANAGER:
                 rate -= Position.TOP_MANAGER.getChangeRate();
                 break;
-            case Position.MANAGER:
-                rate -= Position.MANAGER.getChangeRate();
+            case Position.MID_MANAGER:
+                rate -= Position.MID_MANAGER.getChangeRate();
                 break;
         }
         log.info("scoringPosition() - end: void");
@@ -117,6 +115,9 @@ public class ScoringServiceImpl implements ScoringService {
                 break;
             case MaritalStatus.DIVORCED:
                 rate += MaritalStatus.DIVORCED.getChangeRate();
+                break;
+            case MaritalStatus.WIDOW_WIDOWER:
+                rate += MaritalStatus.WIDOW_WIDOWER.getChangeRate();
                 break;
         };
         log.info("scoringMaritalStatus() - end: void");

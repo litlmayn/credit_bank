@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Position {
-    WORKER(0), MANAGER(2), TOP_MANAGER(3);
+    WORKER(0), MID_MANAGER(2), TOP_MANAGER(3), OWNER(0);
 
     private final int changeRate;
 

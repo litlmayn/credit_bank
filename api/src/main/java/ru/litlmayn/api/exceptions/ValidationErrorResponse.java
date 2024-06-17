@@ -1,4 +1,4 @@
-package ru.litlmayn.calculator.exceptions;
+package ru.litlmayn.api.exceptions;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

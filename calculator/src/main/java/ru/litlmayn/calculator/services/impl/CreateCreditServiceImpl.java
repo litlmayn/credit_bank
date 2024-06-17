@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.litlmayn.api.dto.CreditDto;
 import ru.litlmayn.api.dto.ScoringDataDto;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.CreateCreditService;
 import ru.litlmayn.calculator.services.CreditDataService;
 import ru.litlmayn.calculator.services.PaymentElementsService;

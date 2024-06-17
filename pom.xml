@@ -16,6 +16,8 @@
 	<modules>
 		<module>calculator</module>
 		<module>api</module>
+		<module>credit_bank_db</module>
+		<module>deal</module>
 	</modules>
 	<properties>
 		<java.version>21</java.version>

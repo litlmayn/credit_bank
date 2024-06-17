@@ -1,13 +1,13 @@
-package ru.litlmayn.calculator.controllers;
+package ru.litlmayn.api.controllers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
-import ru.litlmayn.calculator.exceptions.ValidationErrorResponse;
-import ru.litlmayn.calculator.exceptions.Violation;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.ValidationErrorResponse;
+import ru.litlmayn.api.exceptions.Violation;
 
 import java.util.List;
 import java.util.stream.Collectors;

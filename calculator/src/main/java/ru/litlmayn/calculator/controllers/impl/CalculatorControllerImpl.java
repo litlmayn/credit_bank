@@ -10,7 +10,7 @@ import ru.litlmayn.api.dto.CreditDto;
 import ru.litlmayn.api.dto.LoanOfferDto;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;
 import ru.litlmayn.api.dto.ScoringDataDto;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 import ru.litlmayn.calculator.services.CreateCreditService;
 import ru.litlmayn.calculator.services.LoanOffersService;
 
@@ -27,6 +27,7 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     private final LoanOffersService loanOffersService;
     private final CreateCreditService createCreditService;
 
+    @Override
     @PostMapping("/offers")
     @Operation(summary = "Создание кредитных предложений")
     public List<LoanOfferDto> offers(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
@@ -36,6 +37,7 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
         return returnData;
     }
 
+    @Override
     @PostMapping("/calc")
     @Operation(summary = "Полный расчет всех данных выбранного кредита")
     public CreditDto calc(@Valid @RequestBody ScoringDataDto scoringDataDto) {

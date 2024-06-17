@@ -17,7 +17,13 @@
             <artifactId>api</artifactId>
             <version>0.0.1</version>
         </dependency>
+        <dependency>
+            <groupId>ru.litlmayn</groupId>
+            <artifactId>credit_bank_db</artifactId>
+            <version>0.0.1</version>
+        </dependency>
     </dependencies>
+
 
     <build>
         <finalName>calculator</finalName>

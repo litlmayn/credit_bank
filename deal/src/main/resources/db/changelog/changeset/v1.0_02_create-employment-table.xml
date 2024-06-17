@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+    <changeSet id="create-employment" author="Vadim Kramarenko">
+        <createTable tableName="employment">
+            <column name="employment_uuid" type="uuid" autoIncrement="false">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="status" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employer_inn" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary" type="decimal">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="work_experience_total" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="work_experience_current" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

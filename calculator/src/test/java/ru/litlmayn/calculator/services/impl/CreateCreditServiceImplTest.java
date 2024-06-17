@@ -12,7 +12,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
-import ru.litlmayn.calculator.exceptions.RefusalCreditException;
+import ru.litlmayn.api.exceptions.RefusalCreditException;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -50,7 +50,7 @@ class CreateCreditServiceImplTest {
                 MaritalStatus.MARRIED,
                 2,
                 new EmploymentDto(
-                        EmploymentStatus.WORKER,
+                        EmploymentStatus.EMPLOYED,
                         "7743013902",
                         new BigDecimal("20000"),
                         Position.WORKER,
