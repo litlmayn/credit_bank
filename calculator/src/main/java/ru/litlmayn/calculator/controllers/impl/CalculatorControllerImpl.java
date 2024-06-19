@@ -30,7 +30,7 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     @Override
     @PostMapping("/offers")
     @Operation(summary = "Создание кредитных предложений")
-    public List<LoanOfferDto> offers(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
+    public List<LoanOfferDto> offers(@RequestBody LoanStatementRequestDto loanStatementRequestDto) {
         log.info("offers() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
         List<LoanOfferDto> returnData = loanOffersService.createListOffers(loanStatementRequestDto);
         log.info("offers() - end: List<LoanOfferDto> = " + returnData.toString());
@@ -40,7 +40,7 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     @Override
     @PostMapping("/calc")
     @Operation(summary = "Полный расчет всех данных выбранного кредита")
-    public CreditDto calc(@Valid @RequestBody ScoringDataDto scoringDataDto) {
+    public CreditDto calc(@RequestBody ScoringDataDto scoringDataDto) {
         log.info("calc() - start: ScoringDataDto = " + scoringDataDto);
         try {
 
