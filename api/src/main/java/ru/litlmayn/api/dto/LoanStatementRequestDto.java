@@ -50,7 +50,7 @@ public class LoanStatementRequestDto {
     private String email;
 
     @NonNull
-    @MinimumDate(message = "Вы должны быть старще 18 лет.")
+    @MinimumDate(message = "Вы должны быть старше 18 лет.")
     @Schema(description = "Дата рождения", example = "2000-01-01")
     private LocalDate birthdate;
 

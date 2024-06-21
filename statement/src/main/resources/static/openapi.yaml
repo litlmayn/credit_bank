@@ -1,0 +1,191 @@
+openapi: 3.0.1
+info:
+  title: statement
+  description: Контроллер для запросов условий кредита
+  version: 0.0.1
+servers:
+  - url: http://localhost:8082/api/statement
+tags:
+  - name: Statement
+    description: Заявка
+
+paths:
+  /:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanStatementRequestDto'
+      responses:
+        '200':
+          description: Ok. Successful offer response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LoanOfferDto'
+        '400':
+          description: Error 400 Bad request
+        '500':
+          description: Error 500 internalServerError
+
+  /offer:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanOfferDto'
+      responses:
+        '200':
+          description: Ok. Successful offer response
+        '400':
+          description: Error 400 Bad request
+        '500':
+          description: Error 500 internalServerError
+
+components:
+  schemas:
+    LoanStatementRequestDto:
+      description: Данные для расчета кредитного предложени
+      type: object
+      properties:
+        amount:
+          description: Сумма кредита
+          type: number
+          default: 100000
+        term:
+          description: Срок кредита
+          type: integer
+          default: 18
+        firstName:
+          description: Имя
+          type: string
+          default: Иван
+        lastName:
+          description: Фамилия
+          type: string
+          default: Иванов
+        middleName:
+          description: Отчество
+          type: string
+          default: Ивнович
+        email:
+          description: email
+          type: string
+          default: ivanov@mail.ru
+        birthdate:
+          description: Дата рождения
+          type: number
+          default: 2000-01-01
+        passportSeries:
+          description: Серия паспорта
+          type: string
+          default: 1234
+        passportNumber:
+          description: Номер паспорта
+          type: string
+          default: 123456
+
+    LoanOfferDto:
+      description: Кредитное предложение
+      type: object
+      properties:
+        statementId:
+          description: id заявки
+          type: string
+          default: f3c4ba45-11ff-4550-8042-bc89b917c6d5
+        requestedAmount:
+          description: Запрошенная сумма
+          type: number
+          default: 100000
+        totalAmount:
+          description: Итоговая сумма
+          type: number
+          default: 129000
+        term:
+          description: Срок кредита
+          type: integer
+          default: 18
+        monthlyPayment:
+          description: Ежемесячный платеж
+          type: number
+          default: 7290.8
+        rate:
+          description: Процентная ставка
+          type: number
+          default: 22
+        isInsuranceEnabled:
+          description: Включена ли страховка
+          type: boolean
+          default: false
+        isSalaryClient:
+          description: Ялвяется ли заемщик зарплатным клиентом
+          type: boolean
+          default: false
+
+    FinishRegistrationRequestDto:
+      description: Расширенные данные для получения кредита
+      type: object
+      properties:
+        gender:
+          description: Пол
+          type: string
+          default: MAN
+        maritalStatus:
+          description: Семейное положение
+          type: string
+          default: MARRIED
+        dependentAmount:
+          description: Количество иждевенцев
+          type: integer
+          default: 2
+        passportIssueDate:
+          description: Дата выпуска паспорта
+          type: number
+          default: 2020-02-22
+        passportIssueBranch:
+          description: Отыдел выпуска паспорта
+          type: string
+          default: Московсий район
+        employment:
+          type: object
+          items:
+            $ref: '#/components/schemas/EmploymentDto'
+        accountNumber:
+          description: Номер счета
+          type: string
+          default: 12345678901
+
+    EmploymentDto:
+      description: Данные о должности на работе
+      type: object
+      properties:
+        employmentStatus:
+          description: Статус занятости
+          type: string
+          default: EMPLOYED
+        employerInn:
+          description: ИНН работодателя
+          type: string
+          default: 7743013902
+        salary:
+          description: Размер заработной платы
+          type: number
+          default: 20000
+        position:
+          description: Позиция на работе
+          type: string
+          default: WORKER
+        workExperienceTotal:
+          description: Стаж работы полный
+          type: integer
+          default: 30
+        workExperienceCurrent:
+          description: Стаж работы в текущей компании
+          type: integer
+          default: 25

@@ -9,7 +9,9 @@
         <version>0.0.1</version>
     </parent>
 
+    <groupId>ru.litlmayn</groupId>
     <artifactId>deal</artifactId>
+    <version>0.0.1</version>
 
     <dependencies>
         <dependency>
