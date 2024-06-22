@@ -1,4 +1,4 @@
-package ru.litlmayn.services.impl;
+package ru.litlmayn.deal.services.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,15 +6,17 @@ import org.springframework.stereotype.Service;
 import ru.litlmayn.api.dto.CreditDto;
 import ru.litlmayn.api.dto.FinishRegistrationRequestDto;
 import ru.litlmayn.api.dto.ScoringDataDto;
-import ru.litlmayn.mappers.*;
-import ru.litlmayn.models.Client;
-import ru.litlmayn.models.Credit;
-import ru.litlmayn.models.Statement;
-import ru.litlmayn.repositories.ClientRepository;
-import ru.litlmayn.repositories.CreditRepository;
-import ru.litlmayn.repositories.StatementRepository;
-import ru.litlmayn.services.CalculateStatementId;
-import ru.litlmayn.utils.FeignServiceUtil;
+import ru.litlmayn.deal.mappers.CreditDtoToCreditMapper;
+import ru.litlmayn.deal.mappers.FinishRegistrationToClientMapper;
+import ru.litlmayn.deal.mappers.ToScoringDataMapper;
+import ru.litlmayn.deal.models.Client;
+import ru.litlmayn.deal.models.Credit;
+import ru.litlmayn.deal.models.Statement;
+import ru.litlmayn.deal.repositories.ClientRepository;
+import ru.litlmayn.deal.repositories.CreditRepository;
+import ru.litlmayn.deal.repositories.StatementRepository;
+import ru.litlmayn.deal.services.CalculateStatementId;
+import ru.litlmayn.deal.utils.FeignServiceUtil;
 
 import java.util.UUID;
 

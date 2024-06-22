@@ -1,7 +1,7 @@
-package ru.litlmayn.repositories;
+package ru.litlmayn.deal.repositories;
 
 import org.springframework.data.repository.CrudRepository;
-import ru.litlmayn.models.Statement;
+import ru.litlmayn.deal.models.Statement;
 
 import java.util.Optional;
 import java.util.UUID;

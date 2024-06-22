@@ -1,13 +1,9 @@
-package ru.litlmayn.models;
+package ru.litlmayn.deal.models;
 
-import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
 import ru.litlmayn.api.dto.PaymentScheduleElementDto;
 import ru.litlmayn.api.dto.enums.CreditStatus;
 

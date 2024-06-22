@@ -1,4 +1,4 @@
-package ru.litlmayn.services.impl;
+package ru.litlmayn.deal.services.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 import ru.litlmayn.api.dto.LoanOfferDto;
 import ru.litlmayn.api.dto.enums.ApplicationStatus;
 import ru.litlmayn.api.dto.enums.ChangeType;
-import ru.litlmayn.models.Statement;
-import ru.litlmayn.models.StatusHistory;
-import ru.litlmayn.repositories.StatementRepository;
-import ru.litlmayn.services.OfferSelectService;
+import ru.litlmayn.deal.models.Statement;
+import ru.litlmayn.deal.models.StatusHistory;
+import ru.litlmayn.deal.repositories.StatementRepository;
+import ru.litlmayn.deal.services.OfferSelectService;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package ru.litlmayn.models;
+package ru.litlmayn.deal.models;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

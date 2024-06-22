@@ -1,13 +1,10 @@
-package ru.litlmayn.mappers;
+package ru.litlmayn.deal.mappers;
 
-import liquibase.pro.packaged.M;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;
-import ru.litlmayn.models.Client;
-
-import java.util.UUID;
+import ru.litlmayn.deal.models.Client;
 
 @Mapper(componentModel = "spring")
 public interface LoanOfferRequestToClientMapper {

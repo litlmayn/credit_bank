@@ -1,4 +1,4 @@
-package ru.litlmayn.models;
+package ru.litlmayn.deal.models;
 
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.AllArgsConstructor;

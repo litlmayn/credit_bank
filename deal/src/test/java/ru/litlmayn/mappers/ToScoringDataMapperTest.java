@@ -9,6 +9,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
+import ru.litlmayn.deal.mappers.ToScoringDataMapper;
 import ru.litlmayn.models.Client;
 import ru.litlmayn.models.Passport;
 import ru.litlmayn.models.Statement;

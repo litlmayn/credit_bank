@@ -1,10 +1,10 @@
-package ru.litlmayn.mappers;
+package ru.litlmayn.deal.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.litlmayn.api.dto.CreditDto;
-import ru.litlmayn.models.Credit;
+import ru.litlmayn.deal.models.Credit;
 
 @Mapper(componentModel = "spring")
 public interface CreditDtoToCreditMapper {

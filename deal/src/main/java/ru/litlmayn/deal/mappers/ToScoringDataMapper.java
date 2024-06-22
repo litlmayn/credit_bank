@@ -1,12 +1,12 @@
-package ru.litlmayn.mappers;
+package ru.litlmayn.deal.mappers;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 import ru.litlmayn.api.dto.FinishRegistrationRequestDto;
 import ru.litlmayn.api.dto.ScoringDataDto;
-import ru.litlmayn.models.Client;
-import ru.litlmayn.models.Statement;
+import ru.litlmayn.deal.models.Client;
+import ru.litlmayn.deal.models.Statement;
 
 @Mapper(componentModel = "spring")
 public interface ToScoringDataMapper {

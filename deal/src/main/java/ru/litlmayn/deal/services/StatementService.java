@@ -1,4 +1,4 @@
-package ru.litlmayn.services;
+package ru.litlmayn.deal.services;
 
 import ru.litlmayn.api.dto.LoanOfferDto;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;

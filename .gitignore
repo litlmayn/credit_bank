@@ -6,6 +6,7 @@ target/
 .idea
 mvnw.cmd
 mvnw
+.mvn
 deal.iml
 
 ### STS ###

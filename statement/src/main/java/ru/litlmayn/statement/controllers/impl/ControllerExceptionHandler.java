@@ -18,13 +18,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @ControllerAdvice
 public class ControllerExceptionHandler {
-    @ExceptionHandler(RefusalCreditException.class)
-    public ResponseEntity<String> handleRefusalCreditException(RefusalCreditException exception) {
-        // 500 ответ сервера, когда клиенту отказано в кредите. Для читаемого варианта создал кастомный exception.
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(exception.getMessage());
-    }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)

@@ -1,4 +1,4 @@
-package ru.litlmayn.controllers.impl;
+package ru.litlmayn.deal.controllers.impl;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -9,11 +9,10 @@ import ru.litlmayn.api.controllers.DealControllerApi;
 import ru.litlmayn.api.dto.FinishRegistrationRequestDto;
 import ru.litlmayn.api.dto.LoanOfferDto;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;
-import ru.litlmayn.services.CalculateStatementId;
-import ru.litlmayn.services.OfferSelectService;
-import ru.litlmayn.services.StatementService;
+import ru.litlmayn.deal.services.CalculateStatementId;
+import ru.litlmayn.deal.services.OfferSelectService;
+import ru.litlmayn.deal.services.StatementService;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j

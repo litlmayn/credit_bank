@@ -1,4 +1,4 @@
-package ru.litlmayn;
+package ru.litlmayn.deal;
 
 
 import org.springframework.boot.SpringApplication;

@@ -1,4 +1,4 @@
-package ru.litlmayn.utils;
+package ru.litlmayn.deal.utils;
 
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.context.annotation.PropertySource;

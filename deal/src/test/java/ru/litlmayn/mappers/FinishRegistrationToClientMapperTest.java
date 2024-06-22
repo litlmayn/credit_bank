@@ -7,6 +7,7 @@ import ru.litlmayn.api.dto.enums.EmploymentStatus;
 import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
+import ru.litlmayn.deal.mappers.FinishRegistrationToClientMapper;
 import ru.litlmayn.models.Client;
 import ru.litlmayn.models.Employment;
 import ru.litlmayn.models.Passport;
@@ -14,8 +15,6 @@ import ru.litlmayn.models.Passport;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class FinishRegistrationToClientMapperTest {
 

@@ -1,4 +1,4 @@
-package ru.litlmayn.services.impl;
+package ru.litlmayn.deal.services.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,14 +7,14 @@ import ru.litlmayn.api.dto.LoanOfferDto;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;
 import ru.litlmayn.api.dto.enums.ApplicationStatus;
 import ru.litlmayn.api.dto.enums.ChangeType;
-import ru.litlmayn.mappers.LoanOfferRequestToClientMapper;
-import ru.litlmayn.models.Client;
-import ru.litlmayn.models.Statement;
-import ru.litlmayn.models.StatusHistory;
-import ru.litlmayn.repositories.ClientRepository;
-import ru.litlmayn.repositories.StatementRepository;
-import ru.litlmayn.services.StatementService;
-import ru.litlmayn.utils.FeignServiceUtil;
+import ru.litlmayn.deal.mappers.LoanOfferRequestToClientMapper;
+import ru.litlmayn.deal.models.Client;
+import ru.litlmayn.deal.models.Statement;
+import ru.litlmayn.deal.models.StatusHistory;
+import ru.litlmayn.deal.repositories.ClientRepository;
+import ru.litlmayn.deal.repositories.StatementRepository;
+import ru.litlmayn.deal.services.StatementService;
+import ru.litlmayn.deal.utils.FeignServiceUtil;
 
 import java.util.Date;
 import java.util.List;
