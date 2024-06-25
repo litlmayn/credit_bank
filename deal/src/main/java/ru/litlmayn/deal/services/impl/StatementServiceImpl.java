@@ -31,7 +31,7 @@ public class StatementServiceImpl implements StatementService {
 
     @Override
     public List<LoanOfferDto> createAnswerStatement(LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("createAnswerStatement() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("createAnswerStatement() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         Client client = createClient(loanStatementRequestDto);
         clientRepository.save(client);
         Statement statement = createStatement(client);
@@ -39,12 +39,12 @@ public class StatementServiceImpl implements StatementService {
         List<LoanOfferDto> offerDtoList = updateStatementId(
                 feignServiceUtil.createLoanOffersDto(loanStatementRequestDto), statement.getStatementId()
         );
-        log.info("createAnswerStatement() - end: List<LoanOfferDto> = " + offerDtoList);
+        log.info("createAnswerStatement() - end: List<LoanOfferDto>={}", offerDtoList);
         return offerDtoList;
     }
 
     private Statement createStatement(Client client) {
-        log.info("createStatement() - start: Client = " + client);
+        log.info("createStatement() - start: Client={}", client);
         Statement statement = Statement.builder()
                 .statementId(UUID.randomUUID())
                 .clientId(clientRepository.findById(client.getClientId()).orElse(null))
@@ -57,23 +57,23 @@ public class StatementServiceImpl implements StatementService {
                                 .changeType(ChangeType.AUTOMATIC)
                                 .build())
                 .build();
-        log.info("createStatement() - end: Statement = " + statement);
+        log.info("createStatement() - end: Statement={}", statement);
         return statement;
     }
 
     private Client createClient(LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("createClient() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("createClient() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         Client client = LoanOfferRequestToClientMapper.MAPPER.toClientResponse(loanStatementRequestDto);
-        log.info("createClient() - end: Client = " + client);
+        log.info("createClient() - end: Client={}", client);
         return client;
     }
 
     private List<LoanOfferDto> updateStatementId(List<LoanOfferDto> offerDtoList, UUID statementId) {
-        log.info("updateStatementId() - start: List<LoanOfferDto> = " + offerDtoList + ", statementId = " + statementId);
+        log.info("updateStatementId() - start: List<LoanOfferDto>={}, statementId={}", offerDtoList, statementId);
         for (LoanOfferDto offer: offerDtoList) {
             offer.setStatementId(statementId);
         }
-        log.info("updateStatementId() - end: List<LoanOfferDto> = " + offerDtoList);
+        log.info("updateStatementId() - end: List<LoanOfferDto>={}", offerDtoList);
         return offerDtoList;
     }
 }

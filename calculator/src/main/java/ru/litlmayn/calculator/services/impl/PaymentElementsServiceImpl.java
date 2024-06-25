@@ -23,7 +23,7 @@ public class PaymentElementsServiceImpl implements PaymentElementsService {
 
     public List<PaymentScheduleElementDto> calculatePaymentScheduleElements(CreditDto creditDto) {
         // создание графика платежей
-        log.info("calculatePaymentScheduleElements() - start: CreditDto = " + creditDto);
+        log.info("calculatePaymentScheduleElements() - start: CreditDto={}", creditDto);
         LocalDate datePay = LocalDate.now();
         List<PaymentScheduleElementDto> list = new ArrayList<>();
         BigDecimal remainderCredit = creditDto.getPsk();
@@ -46,15 +46,15 @@ public class PaymentElementsServiceImpl implements PaymentElementsService {
                     )
             );
         }
-        log.info("calculatePaymentScheduleElements() - end: PaymentScheduleElementDto = " + list.toString());
+        log.info("calculatePaymentScheduleElements() - end: PaymentScheduleElementDto={}", list.toString());
         return list;
     }
 
     private LocalDate counterDatePay(LocalDate datePay) {
         // счетчик дня платежа
-        log.info("counterDatePay() - start: datePay = " + datePay);
+        log.info("counterDatePay() - start: datePay={}", datePay);
         datePay = datePay.plusMonths(1);
-        log.info("countDatePau() - end: datePay = " + datePay);
+        log.info("countDatePau() - end: datePay={}", datePay);
         return datePay;
     }
 }

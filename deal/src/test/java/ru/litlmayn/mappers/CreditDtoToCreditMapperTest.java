@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import ru.litlmayn.api.dto.CreditDto;
 import ru.litlmayn.api.dto.PaymentScheduleElementDto;
 import ru.litlmayn.deal.mappers.CreditDtoToCreditMapper;
-import ru.litlmayn.models.Credit;
+import ru.litlmayn.deal.models.Credit;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

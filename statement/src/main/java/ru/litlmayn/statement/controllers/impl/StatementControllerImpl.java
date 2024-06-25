@@ -32,9 +32,9 @@ public class StatementControllerImpl implements StatementController {
     @PostMapping("/statement")
     @Operation(summary = "Прескоринг + запрос на расчет возможных условий кредита")
     public List<LoanOfferDto> createOffers(@Valid @RequestBody LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("createOffers() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("createOffers() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         List<LoanOfferDto> offerDtoList = requestOnDealCreateOffers.requestOnDealCreateOffers(loanStatementRequestDto);
-        log.info("createOffers() - end: List<LoanOfferDto> = " + offerDtoList);
+        log.info("createOffers() - end: List<LoanOfferDto>={}", offerDtoList);
         return offerDtoList;
     }
 
@@ -42,7 +42,7 @@ public class StatementControllerImpl implements StatementController {
     @PostMapping("/statement/offer")
     @Operation(summary = "Выбор одного из предложений")
     public void choiceOffer(@RequestBody LoanOfferDto loanOfferDto) {
-        log.info("choiceOffer() - start: LoanOfferDto = " + loanOfferDto);
+        log.info("choiceOffer() - start: LoanOfferDto={}", loanOfferDto);
         requestOnDealOfferSelect.requestOnDealOfferSelect(loanOfferDto);
         log.info("choiceOffer() - end: void");
     }

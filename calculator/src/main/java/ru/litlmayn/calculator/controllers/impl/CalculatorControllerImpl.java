@@ -33,9 +33,9 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     @PostMapping("/offers")
     @Operation(summary = "Создание кредитных предложений")
     public List<LoanOfferDto> offers(@RequestBody LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("offers() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("offers() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         List<LoanOfferDto> returnData = loanOffersService.createListOffers(loanStatementRequestDto);
-        log.info("offers() - end: List<LoanOfferDto> = " + returnData.toString());
+        log.info("offers() - end: List<LoanOfferDto>={}", returnData.toString());
         return returnData;
     }
 
@@ -43,9 +43,9 @@ public class CalculatorControllerImpl implements CalculatorControllerApi {
     @PostMapping("/calc")
     @Operation(summary = "Полный расчет всех данных выбранного кредита")
     public CreditDto calc(@RequestBody ScoringDataDto scoringDataDto) throws RefusalCreditException {
-        log.info("calc() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("calc() - start: ScoringDataDto={}", scoringDataDto);
         CreditDto creditDto = createCreditService.createCreditDto(scoringDataDto);
-        log.info("calc() - end: CreditDto = " + creditDto);
+        log.info("calc() - end: CreditDto={}", creditDto);
         return creditDto;
     }
 

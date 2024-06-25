@@ -3,7 +3,7 @@ package ru.litlmayn.mappers;
 import org.junit.jupiter.api.Test;
 import ru.litlmayn.api.dto.LoanStatementRequestDto;
 import ru.litlmayn.deal.mappers.LoanOfferRequestToClientMapper;
-import ru.litlmayn.models.Client;
+import ru.litlmayn.deal.models.Client;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -10,9 +10,9 @@ import ru.litlmayn.api.dto.enums.Gender;
 import ru.litlmayn.api.dto.enums.MaritalStatus;
 import ru.litlmayn.api.dto.enums.Position;
 import ru.litlmayn.deal.mappers.ToScoringDataMapper;
-import ru.litlmayn.models.Client;
-import ru.litlmayn.models.Passport;
-import ru.litlmayn.models.Statement;
+import ru.litlmayn.deal.models.Client;
+import ru.litlmayn.deal.models.Passport;
+import ru.litlmayn.deal.models.Statement;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -32,8 +32,8 @@ public class CalculateStatementIdImpl implements CalculateStatementId {
 
     @Override
     public void calculateCredit(FinishRegistrationRequestDto finishRegistrationRequestDto, String statementIdString) {
-        log.info("calculateCredit() - start: FinishRegistrationRequestDto = " + finishRegistrationRequestDto
-            + ", statementIdString = " + statementIdString);
+        log.info("calculateCredit() - start: FinishRegistrationRequestDto={}, statementIdString={}",
+                finishRegistrationRequestDto, statementIdString);
         Statement statement = statementRepository.findStatementByStatementId(
                 UUID.fromString(statementIdString)).orElseThrow();
         ScoringDataDto scoringDataDto = createScoringDataDto(statement, finishRegistrationRequestDto);
@@ -48,14 +48,14 @@ public class CalculateStatementIdImpl implements CalculateStatementId {
     private ScoringDataDto createScoringDataDto(
             Statement statement, FinishRegistrationRequestDto finishRegistrationRequestDto
     ) {
-        log.info("createScoringDataDto() - start: Statement = " + statement
-            + ", FinishRegistrationRequestDto = " + finishRegistrationRequestDto);
+        log.info("createScoringDataDto() - start: Statement={}, FinishRegistrationRequestDto={}",
+                statement, finishRegistrationRequestDto);
         Client client = clientRepository.findStatementByClientId(statement.getClientId().getClientId()).orElseThrow();
         ScoringDataDto scoringDataDto = ToScoringDataMapper.MAPPER.toScoringData(
                 client, finishRegistrationRequestDto, statement);
         client = FinishRegistrationToClientMapper.MAPPER.toClient(client, finishRegistrationRequestDto);
         clientRepository.save(client);
-        log.info("createScoringDataDto() - end: ScoringDataDto = " + scoringDataDto);
+        log.info("createScoringDataDto() - end: ScoringDataDto={}", scoringDataDto);
         return scoringDataDto;
     }
 }

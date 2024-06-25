@@ -25,7 +25,7 @@ public class CreateCreditServiceImpl implements CreateCreditService {
 
     public CreditDto createCreditDto(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // создане окончательного кредитного предложения
-        log.info("createCreditDto() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("createCreditDto() - start: ScoringDataDto={}", scoringDataDto);
         BigDecimal monthlyPayment = creditDataService.calculateFullMonthlyPayment(
                 BigDecimal.valueOf(scoringService.totalScoring(scoringDataDto)),
                 scoringDataDto.getAmount(),
@@ -43,7 +43,7 @@ public class CreateCreditServiceImpl implements CreateCreditService {
                         .setScale(2, RoundingMode.HALF_UP))
                 .build();
         creditDto.setPaymentSchedule(paymentElementsService.calculatePaymentScheduleElements(creditDto));
-        log.info("createCreditDto() - end: CreditDto = " + creditDto);
+        log.info("createCreditDto() - end: CreditDto={}", creditDto);
         return creditDto;
     }
 }

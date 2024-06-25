@@ -22,7 +22,7 @@ public class OfferSelectServiceImpl implements OfferSelectService {
 
     @Override
     public void updateLoanOfferInStatement(LoanOfferDto loanOfferDto) {
-        log.info("updateLoanOfferInStatement() - start: LoanOfferDto = " + loanOfferDto);
+        log.info("updateLoanOfferInStatement() - start: LoanOfferDto={}", loanOfferDto);
         Statement statement = statementRepository.findStatementByStatementId(
                 loanOfferDto.getStatementId()).orElseThrow();
         statement.setStatus(ApplicationStatus.PREPARE_DOCUMENTS);

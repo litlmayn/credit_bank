@@ -30,9 +30,9 @@ public class DealControllerImpl implements DealControllerApi {
     @PostMapping("/statement")
     @Operation(summary = "Создание клиента и заявки и сохранения их в бд")
     public List<LoanOfferDto> statement(@RequestBody LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("statement() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("statement() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         List<LoanOfferDto> list = statementService.createAnswerStatement(loanStatementRequestDto);
-        log.info("statement() - end: List<loanOfferDto> = " + list);
+        log.info("statement() - end: List<loanOfferDto>={}", list);
         return list;
     }
 
@@ -40,7 +40,7 @@ public class DealControllerImpl implements DealControllerApi {
     @PostMapping("/offer/select")
     @Operation(summary = "Добавление кредитного предложения в заявку и изменнеие статуса")
     public void offerSelect(@RequestBody LoanOfferDto loanOfferDto) {
-        log.info("offerSelect - start: LoanOfferDto = " + loanOfferDto);
+        log.info("offerSelect - start: LoanOfferDto={}", loanOfferDto);
         offerSelectService.updateLoanOfferInStatement(loanOfferDto);
         log.info("offerSelect - end: void");
     }
@@ -52,7 +52,7 @@ public class DealControllerImpl implements DealControllerApi {
             @RequestBody FinishRegistrationRequestDto finishRegistrationRequestDto,
             @RequestParam("statementId") String statementIdString
     ) {
-        log.info("createCredit() - start: FinishRegistrationRequestDto = " + finishRegistrationRequestDto
+        log.info("createCredit() - start: FinishRegistrationRequestDto={}", finishRegistrationRequestDto
                 + ", statementIdString = " + statementIdString);
         calculateStatementId.calculateCredit(finishRegistrationRequestDto, statementIdString);
         log.info("createCredit() - end: void");

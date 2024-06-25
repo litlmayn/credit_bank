@@ -19,9 +19,9 @@ public class RequestOnDealCreateOffersImpl implements RequestOnDealCreateOffers 
 
     @Override
     public List<LoanOfferDto> requestOnDealCreateOffers(LoanStatementRequestDto loanStatementRequestDto) {
-        log.info("requestOnDealCreateOffers() - start: LoanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("requestOnDealCreateOffers() - start: LoanStatementRequestDto={}", loanStatementRequestDto);
         List<LoanOfferDto> offerDtoList = feignServiceUtil.requestOnDealCreateOffers(loanStatementRequestDto);
-        log.info("requestOnDealCreateOffers() - end: List<LoanOfferDto> = " + offerDtoList);
+        log.info("requestOnDealCreateOffers() - end: List<LoanOfferDto>={}", offerDtoList);
         return offerDtoList;
     }
 }

@@ -16,7 +16,7 @@ public class RequestOnDealOfferSelectImpl implements RequestOnDealOfferSelect {
 
     @Override
     public void requestOnDealOfferSelect(LoanOfferDto loanOfferDto) {
-        log.info("requestOnDealOfferSelect() - start: LoanOfferDto = " + loanOfferDto);
+        log.info("requestOnDealOfferSelect() - start: LoanOfferDto={}", loanOfferDto);
         feignServiceUtil.requestOnDealOfferSelect(loanOfferDto);
         log.info("requestOnDealOfferSelect() - end: void");
     }
