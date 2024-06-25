@@ -27,14 +27,14 @@ public class LoanOffersServiceImpl implements LoanOffersService {
 
     public List<LoanOfferDto> createListOffers(LoanStatementRequestDto loanStatementRequestDto) {
         // метод для создания 4 первоначальных кредитных прелложений
-        log.info("createListOffers() - start: loanStatementRequestDto = " + loanStatementRequestDto);
+        log.info("createListOffers() - start: loanStatementRequestDto={}", loanStatementRequestDto);
         List<LoanOfferDto> list = List.of(
                 createOffer(loanStatementRequestDto, false, false),
                 createOffer(loanStatementRequestDto, false, true),
                 createOffer(loanStatementRequestDto, true, false),
                 createOffer(loanStatementRequestDto, true, true)
         );
-        log.info("createListOffers() - end: List<LoanOfferDto> = " + list.toString());
+        log.info("createListOffers() - end: List<LoanOfferDto>={}", list.toString());
         return list;
     }
 
@@ -44,8 +44,8 @@ public class LoanOffersServiceImpl implements LoanOffersService {
             Boolean isSalaryClient
     ) {
         // метод для создания первоначального кредитного прелложения
-        log.info("createOffer() - start: loanStatementRequestDto = " + loanStatementRequestDto
-        + "isInsuranceEnabled = " + isInsuranceEnabled + "isSalaryClient = " + isSalaryClient);
+        log.info("createOffer() - start: loanStatementRequestDto={}, isInsuranceEnabled={}, isSalaryClient={}",
+                loanStatementRequestDto, isInsuranceEnabled, isSalaryClient);
         BigDecimal rate = BigDecimal.valueOf(scoring.scoringInsAndSal(
                         isInsuranceEnabled, isSalaryClient));
         BigDecimal monthlyPayment = creditDataService
@@ -65,7 +65,7 @@ public class LoanOffersServiceImpl implements LoanOffersService {
                 .isInsuranceEnabled(isInsuranceEnabled)
                 .isSalaryClient(isSalaryClient)
                 .build();
-        log.info("createOffer() - end: LoanOfferDto = " + loanOfferDto);
+        log.info("createOffer() - end: LoanOfferDto={}", loanOfferDto);
         return loanOfferDto;
     }
 }

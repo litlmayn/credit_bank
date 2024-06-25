@@ -28,7 +28,7 @@ public class ScoringServiceImpl implements ScoringService {
     private Double rate = 0d;
 
     public Double totalScoring(ScoringDataDto scoringDataDto) throws RefusalCreditException {
-        log.info("totalScoring() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("totalScoring() - start: ScoringDataDto={}", scoringDataDto);
         scoringInsAndSal(scoringDataDto.getIsInsuranceEnabled(), scoringDataDto.getIsSalaryClient());
         scoringAge(scoringDataDto);
         scoringPosition(scoringDataDto);
@@ -37,12 +37,12 @@ public class ScoringServiceImpl implements ScoringService {
         scoringTotalAmount(scoringDataDto);
         scoringWorkExperience(scoringDataDto);
         scoringEmploymentStatus(scoringDataDto);
-        log.info("totalScoring() - end: rate = " + rate);
+        log.info("totalScoring() - end: rate={}", rate);
         return rate;
     }
 
     public Double scoringInsAndSal(Boolean isInsuranceEnabled, Boolean isSalaryClient) {
-        log.info("scoringInsAndSal() - start: isInsuranceEnabled = " + isInsuranceEnabled
+        log.info("scoringInsAndSal() - start: isInsuranceEnabled={}", isInsuranceEnabled
                 + ", isSalaryClient = " + isSalaryClient);
         if (isInsuranceEnabled) {
             rate -= 3;
@@ -50,19 +50,16 @@ public class ScoringServiceImpl implements ScoringService {
         if (isSalaryClient){
             rate -= 1;
         }
-        log.info("scoringInsAndSal() - end: rate = " + rate);
+        log.info("scoringInsAndSal() - end: rate={}", rate);
         return rate;
     }
 
     private void scoringEmploymentStatus(ScoringDataDto scoringDataDto) throws RefusalCreditException {
-        log.info("scoringEmploymentStatus() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringEmploymentStatus() - start: ScoringDataDto={}", scoringDataDto);
         if(scoringDataDto.getEmployment().getEmploymentStatus() == EmploymentStatus.UNEMPLOYED) {
-            log.info(
-                    "scoringEmploymentStatus() - end: RefusalCreditException = "
-                            + new RefusalCreditException(
-                                    "Вам отказано в кредите, так как вы не имеете места работы."
-                    ).fillInStackTrace()
-            );
+            log.info("scoringEmploymentStatus() - end: RefusalCreditException={}", new RefusalCreditException(
+                    "Вам отказано в кредите, так как вы не имеете места работы."
+            ).getMessage());
             throw new RefusalCreditException("Вам отказано в кредите, так как вы не имеете места работы.");
         } 
         switch (scoringDataDto.getEmployment().getEmploymentStatus()) {
@@ -78,7 +75,7 @@ public class ScoringServiceImpl implements ScoringService {
 
 
     private void scoringPosition(ScoringDataDto scoringDataDto) {
-        log.info("scoringPosition() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringPosition() - start: ScoringDataDto={}", scoringDataDto);
         switch (scoringDataDto.getEmployment().getPosition()) {
             case Position.TOP_MANAGER:
                 rate -= Position.TOP_MANAGER.getChangeRate();
@@ -92,14 +89,13 @@ public class ScoringServiceImpl implements ScoringService {
 
     private void scoringTotalAmount(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка итоговой суммы займа в соотношении к зарплате заемщика. сумма займа меньше 25 зарплат
-        log.info("scoringTotalAmount() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringTotalAmount() - start: ScoringDataDto={}", scoringDataDto);
         if (scoringDataDto.getAmount().divide(scoringDataDto.getEmployment().getSalary(), MathContext.DECIMAL32)
                 .compareTo(BigDecimal.valueOf(25)) > 0) {
             log.info(
-                    "scoringTotalAmount() - end: RefusalCreditException = "
-                            + new RefusalCreditException(
+                    "scoringTotalAmount() - end: RefusalCreditException={}", new RefusalCreditException(
                                     "Вам отказано в кредите. Сумма кредита не должна превышать 25 зарплат.")
-                            .fillInStackTrace()
+                            .getMessage()
             );
             throw new RefusalCreditException("Вам отказано в кредите. Сумма кредита не должна превышать 25 зарплат.");
         }
@@ -108,7 +104,7 @@ public class ScoringServiceImpl implements ScoringService {
 
     private void scoringMaritalStatus(ScoringDataDto scoringDataDto) {
         // проверка семейного положения
-        log.info("scoringMaritalStatus() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringMaritalStatus() - start: ScoringDataDto={}", scoringDataDto);
         switch (scoringDataDto.getMaritalStatus()){
             case MaritalStatus.MARRIED:
                 rate -= MaritalStatus.MARRIED.getChangeRate();
@@ -125,13 +121,12 @@ public class ScoringServiceImpl implements ScoringService {
 
     private void scoringAge(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка возраста
-        log.info("scoringAge() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringAge() - start: ScoringDataDto={}", scoringDataDto);
         int age = CalculateAge.calculateAge(scoringDataDto.getBirthdate());
         if (age < 20 || age > 65) {
-            log.info("scoringAge() - end: RefusalCreditException = "
-                + new RefusalCreditException(
+            log.info("scoringAge() - end: RefusalCreditException={}", new RefusalCreditException(
                         "Вам отказано в кредите. Для одобрения кредита нуеобходимо достичь 20 летнего возраста."
-            ).fillInStackTrace());
+            ).getMessage());
             throw new RefusalCreditException(
                     "Вам отказано в кредите. Для одобрения кредита нуеобходимо достичь 20 летнего возраста."
             );
@@ -141,7 +136,7 @@ public class ScoringServiceImpl implements ScoringService {
 
     private void scoringGender(ScoringDataDto scoringDataDto) {
         // проверка пола
-        log.info("scoringGender() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringGender() - start: ScoringDataDto={}", scoringDataDto);
         int age = CalculateAge.calculateAge(scoringDataDto.getBirthdate());
         if (scoringDataDto.getGender().equals(Gender.WOMAN) && age > 32 && age < 60) {
             rate -= 3;
@@ -155,20 +150,18 @@ public class ScoringServiceImpl implements ScoringService {
 
     private void scoringWorkExperience(ScoringDataDto scoringDataDto) throws RefusalCreditException {
         // проверка стажа работы
-        log.info("scoringWorkExperience() - start: ScoringDataDto = " + scoringDataDto);
+        log.info("scoringWorkExperience() - start: ScoringDataDto={}", scoringDataDto);
         if (scoringDataDto.getEmployment().getWorkExperienceTotal() < 18) {
-            log.info("scoringWorkExperience() - end: RefusalCreditException = "
-                            + new RefusalCreditException(
+            log.info("scoringWorkExperience() - end: RefusalCreditException={}", new RefusalCreditException(
                                     "Вам отказано в кредите. Ваш общий стаж работы должен привышать 18 месяцес."
-            ).fillInStackTrace());
+            ).getMessage());
             throw new RefusalCreditException(
                     "Вам отказано в кредите. Ваш общий стаж работы должен привышать 18 месяцес."
             );
         } else if (scoringDataDto.getEmployment().getWorkExperienceCurrent() < 3) {
-            log.info("scoringWorkExperience() - end: RefusalCreditException = "
-                    + new RefusalCreditException(
+            log.info("scoringWorkExperience() - end: RefusalCreditException={}", new RefusalCreditException(
                     "Вам отказано в кредите. Ваш общий стаж работы на данном месте работы должен привышать 3 месяцеса."
-            ).fillInStackTrace());
+            ).getMessage());
             throw new RefusalCreditException(
                     "Вам отказано в кредите. Ваш общий стаж работы на данном месте работы должен привышать 3 месяцеса."
             );
